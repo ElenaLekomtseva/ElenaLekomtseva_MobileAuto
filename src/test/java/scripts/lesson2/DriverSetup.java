@@ -10,17 +10,20 @@ import java.net.URL;
 public class DriverSetup {
     protected AndroidDriver driver;
 
+    /**
+     * Set of capabilities to test Android web app
+     * @throws MalformedURLException
+     */
     protected void prepareAndroidNative() throws MalformedURLException {
         // exception required by java.net.URL
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
         //mandatory capabilities
         capabilities.setCapability("deviceName", "Android_7.0");
+        //capabilities.setCapability("deviceName","1215fc9a61d13005");
         capabilities.setCapability("platformName", "Android");
 
         // path to app
-        // Copy the application (.apk), which will become AUT, to the specified location,
-        // e.g. "resources" folder of the project
         File appDir = new File("D:\\Work\\EPAM\\QA\\Project\\ElenaLekomtseva_MobileAuto\\src\\main\\resources");
         File app = new File(appDir, "ContactManager.apk");
 
@@ -39,7 +42,8 @@ public class DriverSetup {
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
         //mandatory Android capabilities
-        capabilities.setCapability("deviceName","Android_7.0");
+        //capabilities.setCapability("deviceName","Android_7.0");
+        capabilities.setCapability("deviceName","1215fc9a61d13005");
         capabilities.setCapability("platformName","Android");
 
         // specific web capabilities
