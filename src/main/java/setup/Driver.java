@@ -15,10 +15,13 @@ public class Driver extends TestProperties {
 
     // Properties to be read
     protected static String AUT; // (mobile) app under testing
+    protected static String APP_ACTIVITY;
+    protected static String APP_PACKAGE;
     protected static String SUT; // site under testing
     protected static String TEST_PLATFORM;
     protected static String DRIVER;
     protected static String DEVICE_NAME;
+    protected static String UDID;
 
     /**
      * Set appropriate capabilities to Appium driver depending on platform and application
@@ -37,10 +40,13 @@ public class Driver extends TestProperties {
         AUT = mobileAppName == null ? null : resourcePath + mobileAppName;
         System.out.println(AUT);
         String t_sut = getProp("sut");
-        SUT = t_sut == null ? null : "http://" + t_sut;
+        SUT = t_sut == null ? null : "https://" + t_sut;
         TEST_PLATFORM = getProp("platform");
         DRIVER = getProp("driver");
         DEVICE_NAME = getProp("devicename");
+        UDID = getProp("udid");
+        APP_PACKAGE = getProp("appPackage");
+        APP_ACTIVITY = getProp("appActivity");
 
         // Setup test platform: Android or iOS. Browser also depends on a platform.
         switch (TEST_PLATFORM) {
@@ -50,6 +56,7 @@ public class Driver extends TestProperties {
                 browserName = "Chrome";
                 break;
             case "iOS":
+                capabilities.setCapability(MobileCapabilityType.UDID, UDID);
                 browserName = "Safari";
                 break;
             default:
@@ -58,15 +65,20 @@ public class Driver extends TestProperties {
         capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, TEST_PLATFORM);
 
         // Setup type of application: mobile, web (or hybrid)
-        if (AUT != null && SUT == null) {
-            // Native
-            File app = new File(AUT);
-            capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
-        } else if (SUT != null && AUT == null) {
-            // Web
-            capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, browserName);
+        if (APP_PACKAGE != null) {
+            capabilities.setCapability("appPackage", APP_PACKAGE);
+            capabilities.setCapability("appActivity", APP_ACTIVITY);
         } else {
-            throw new Exception("Unclear type of mobile app");
+            if (AUT != null && SUT == null) {
+                // Native
+                File app = new File(AUT);
+                capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
+            } else if (SUT != null && AUT == null) {
+                // Web
+                capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, browserName);
+            } else {
+                throw new Exception("Unclear type of mobile app");
+            }
         }
 
         // Init driver for local Appium server with capabilities have been set

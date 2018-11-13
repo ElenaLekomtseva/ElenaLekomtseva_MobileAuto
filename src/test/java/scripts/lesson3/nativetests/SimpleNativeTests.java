@@ -29,6 +29,7 @@ public class SimpleNativeTests extends Hooks {
 
         // TODO: Check virtual keyboard appears
 
+
         // TODO: heck pop-up "Tap to Google Search and more" appears: ??????????
 
         System.out.println("Simplest Appium test done");
