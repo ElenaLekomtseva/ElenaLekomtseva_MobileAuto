@@ -1,4 +1,4 @@
-package scripts.lesson2;
+package scripts;
 
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -24,7 +24,7 @@ public class DriverSetup {
         capabilities.setCapability("platformName", "Android");
 
         // path to app
-        File appDir = new File("D:\\Work\\EPAM\\QA\\Project\\ElenaLekomtseva_MobileAuto\\src\\main\\resources");
+        File appDir = new File("./src/main/resources/");
         File app = new File(appDir, "ContactManager.apk");
 
         //other caps

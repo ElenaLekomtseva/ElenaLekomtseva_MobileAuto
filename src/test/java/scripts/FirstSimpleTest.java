@@ -1,4 +1,4 @@
-package scripts.lesson2;
+package scripts;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
