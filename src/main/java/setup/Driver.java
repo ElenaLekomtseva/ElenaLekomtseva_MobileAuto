@@ -18,6 +18,7 @@ public class Driver extends TestProperties {
     protected static String APP_ACTIVITY;
     protected static String APP_PACKAGE;
     protected static String SUT; // site under testing
+    protected static String SUT_TITLE;
     protected static String TEST_PLATFORM;
     protected static String DRIVER;
     protected static String DEVICE_NAME;
@@ -41,6 +42,7 @@ public class Driver extends TestProperties {
         System.out.println(AUT);
         String t_sut = getProp("sut");
         SUT = t_sut == null ? null : "https://" + t_sut;
+        SUT_TITLE = getProp("title");
         TEST_PLATFORM = getProp("platform");
         DRIVER = getProp("driver");
         DEVICE_NAME = getProp("devicename");
@@ -51,7 +53,6 @@ public class Driver extends TestProperties {
         // Setup test platform: Android or iOS. Browser also depends on a platform.
         switch (TEST_PLATFORM) {
             case "Android":
-                //capabilities.setCapability(MobileCapabilityType.DEVICE_NAME,"emulator-5554"); // default Android emulator
                 capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, DEVICE_NAME);
                 browserName = "Chrome";
                 break;
@@ -65,7 +66,7 @@ public class Driver extends TestProperties {
         capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, TEST_PLATFORM);
 
         // Setup type of application: mobile, web (or hybrid)
-        if (APP_PACKAGE != null) {
+        if (APP_ACTIVITY != null) {
             capabilities.setCapability("appPackage", APP_PACKAGE);
             capabilities.setCapability("appActivity", APP_ACTIVITY);
         } else {

@@ -1,4 +1,4 @@
-package scripts.lesson3;
+package scripts;
 
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
