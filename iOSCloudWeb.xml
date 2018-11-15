@@ -1,0 +1,23 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="AndroidWebSuite" parallel="false">
+    <test name="Android cloud web test">
+        <parameter name="sut" value="https://www.iana.org" />
+        <parameter name="title" value="Internet Assigned Numbers Authority" />
+        <parameter name="udid" value="25ad632db73b1de523be6565f395cae349b4dd13" />
+        <parameter name="platformName" value="iOS" />
+        <parameter name="browserName" value="Safari" />
+        <parameter name="host" value="EPM-TSTF:695616a5-92d2-4cdb-8343-a44bad94fa85@epm-mstfmsq-ci.minsk.epam.com" />
+        <parameter name="port" value="8080"/>
+
+        <groups>
+            <run>
+                <include name="web"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="scripts.webtests.SimpleWebTests" />
+        </classes>
+    </test>
+</suite>

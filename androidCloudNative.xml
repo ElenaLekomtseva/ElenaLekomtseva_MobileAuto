@@ -1,0 +1,22 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="AndroidWebSuite" parallel="false">
+    <test name="Android cloud web test">
+        <parameter name="deviceName" value="LGE Nexus 5" />
+        <parameter name="platformName" value="Android" />
+        <parameter name="host" value="EPM-TSTF:695616a5-92d2-4cdb-8343-a44bad94fa85@epm-mstfmsq-ci.minsk.epam.com" />
+        <parameter name="port" value="8080"/>
+        <parameter name="appPackage" value="com.example.android.contactmanager" />
+        <parameter name="appActivity" value="com.example.android.contactmanager.ContactManager" />
+
+        <groups>
+            <run>
+                <include name="native"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="scripts.nativetests.SimpleNativeTests" />
+        </classes>
+    </test>
+</suite>

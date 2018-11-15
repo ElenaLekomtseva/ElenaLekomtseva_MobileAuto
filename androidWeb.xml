@@ -1,0 +1,23 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="AndroidWebSuite" parallel="false">
+    <test name="Android web test">
+        <parameter name="sut" value="https://www.iana.org" />
+        <parameter name="title" value="Internet Assigned Numbers Authority" />
+        <parameter name="deviceName" value="Android_7.0" />
+        <parameter name="platformName" value="Android" />
+        <parameter name="browserName" value="Chrome" />
+        <parameter name="host" value="127.0.0.1" />
+        <parameter name="port" value="4723"/>
+
+        <groups>
+            <run>
+                <include name="web"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="scripts.webtests.SimpleWebTests" />
+        </classes>
+    </test>
+</suite>

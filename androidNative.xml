@@ -1,0 +1,22 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="AndroidWebSuite" parallel="false">
+    <test name="Android web test">
+        <parameter name="app" value="./src/main/resources/ContactManager.apk" />
+        <parameter name="appPackage" value="com.example.android.contactmanager" />
+        <parameter name="deviceName" value="Android_7.0" />
+        <parameter name="platformName" value="Android" />
+        <parameter name="host" value="127.0.0.1" />
+        <parameter name="port" value="4723"/>
+
+        <groups>
+            <run>
+                <include name="native"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="scripts.nativetests.SimpleNativeTests" />
+        </classes>
+    </test>
+</suite>
